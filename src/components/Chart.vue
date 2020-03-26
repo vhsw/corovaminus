@@ -11,14 +11,41 @@
         >Algorithm failed to converge. Error level is {{fittingResults.parameterError.toFixed(2)}}</b-notification>
       </section>
       <section>
-        <line-chart :chart-data="charts"></line-chart>
+        <section class="hero">
+          <div class="hero-body">
+            <div class="container">
+              <h3 class="title is-3">Total cases</h3>
+            </div>
+          </div>
+        </section>
+        <div class="container">
+          <line-chart :chart-data="charts.cumulative"></line-chart>
+        </div>
       </section>
       <section>
-        <b-message>
-          <p>Total cases expected: {{fittingResults.parameterValues[0].toFixed(0)}}</p>
-          <p>Peak expected: {{new Date(fittingResults.parameterValues[1]) | formatDistanceToNow}}</p>
-          <p>Expected duration: {{fittingResults.parameterValues[2].toFixed(0)}}</p>
-        </b-message>
+        <section class="hero">
+          <div class="hero-body">
+            <div class="container">
+              <h3 class="title is-3">Total cases in log scale</h3>
+            </div>
+          </div>
+        </section>
+        <div class="container">
+          <log-chart :chart-data="charts.cumulative"></log-chart>
+        </div>
+      </section>
+
+      <section>
+        <section class="hero">
+          <div class="hero-body">
+            <div class="container">
+              <h3 class="title is-3">New cases per day</h3>
+            </div>
+          </div>
+        </section>
+        <div class="container">
+          <line-chart :chart-data="charts.density"></line-chart>
+        </div>
       </section>
     </div>
   </div>
@@ -26,12 +53,14 @@
 
 <script>
 import LineChart from "./LineChart";
+import LogChart from "./LogChart";
 
 import { formatDistanceToNow } from "date-fns";
 
 export default {
   components: {
-    LineChart
+    LineChart,
+    LogChart
   },
   props: ["charts", "fittingParams", "fittingResults"],
   filters: {

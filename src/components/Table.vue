@@ -1,15 +1,6 @@
 <template>
   <section>
     <section>
-      <b-field>
-        <b-datepicker placeholder="Date" icon="calendar" editable expanded v-model="newEntry.date"></b-datepicker>
-        <b-input placeholder="Infected" type="number" min="0" expanded v-model="newEntry.infected"></b-input>
-        <p class="control">
-          <b-button class="button is-primary" @click="submitEntry" icon-right="plus" />
-        </p>
-      </b-field>
-    </section>
-    <section>
       <b-table
         :data="tableData"
         :columns="columns"
@@ -17,6 +8,15 @@
         :default-sort="['date', 'desc']"
         narrowed
       ></b-table>
+    </section>
+    <section>
+      <b-field>
+        <b-datepicker placeholder="Date" icon="calendar" editable expanded v-model="newEntry.date"></b-datepicker>
+        <b-input placeholder="Infected" type="number" min="0" expanded v-model="newEntry.infected"></b-input>
+        <p class="control">
+          <b-button class="button is-primary" @click="submitEntry">Add</b-button>
+        </p>
+      </b-field>
     </section>
   </section>
 </template>

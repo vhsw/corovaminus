@@ -6,6 +6,5 @@ export default function (x, y, func, options) {
         y: y
     };
 
-
     return LM(data, func, options);
 }
